@@ -1,6 +1,4 @@
-from pathlib import Path
 
-items = [
 ("أَنَا","ذَهَبْتُ","أَذْهَبُ","أَذْهَبُ","تَذْهَبُ","يَذْهَبُ","نَذْهَبُ","من رفتم ← من می‌روم"),
 ("أَنْتَ","كَتَبْتَ","تَكْتُبُ","أَكْتُبُ","تَكْتُبُ","يَكْتُبُ","نَكْتُبُ","تو (مذکر) نوشتی ← می‌نویسی"),
 ("أَنْتِ","قَرَأْتِ","تَقْرَئِينَ","أَقْرَأُ","تَقْرَئِينَ","يَقْرَأُ","نَقْرَأُ","تو (مونث) خواندی ← می‌خوانی"),
@@ -78,7 +76,3 @@ function tone(f){{if(!ctx)return;let o=ctx.createOscillator(),g=ctx.createGain()
 el("music").onclick=async()=>{{if(!musicOn){{let AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;ctx=new AC();if(ctx.state==="suspended")await ctx.resume();let notes=[392,440,523,440,349,392,466,392];timer=setInterval(()=>tone(notes[note++%notes.length]),380);musicOn=true;el("music").textContent="🔇 خاموش کردن موسیقی"}}else{{clearInterval(timer);await ctx.suspend();musicOn=false;el("music").textContent="🎵 روشن کردن موسیقی"}}}};
 show();
 </script></body></html>'''
-
-out = Path("/mnt/data/arabic-game-past-present.html")
-out.write_text(html, encoding="utf-8")
-print(f"فایل کامل آماده شد: {len(html.splitlines())} خط")
