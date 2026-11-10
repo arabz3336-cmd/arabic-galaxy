@@ -1,78 +1,430 @@
 
-("أَنَا","ذَهَبْتُ","أَذْهَبُ","أَذْهَبُ","تَذْهَبُ","يَذْهَبُ","نَذْهَبُ","من رفتم ← من می‌روم"),
-("أَنْتَ","كَتَبْتَ","تَكْتُبُ","أَكْتُبُ","تَكْتُبُ","يَكْتُبُ","نَكْتُبُ","تو (مذکر) نوشتی ← می‌نویسی"),
-("أَنْتِ","قَرَأْتِ","تَقْرَئِينَ","أَقْرَأُ","تَقْرَئِينَ","يَقْرَأُ","نَقْرَأُ","تو (مونث) خواندی ← می‌خوانی"),
-("هُوَ","شَرِبَ","يَشْرَبُ","أَشْرَبُ","تَشْرَبُ","يَشْرَبُ","نَشْرَبُ","او (مذکر) نوشید ← می‌نوشد"),
-("هِيَ","لَعِبَتْ","تَلْعَبُ","أَلْعَبُ","تَلْعَبُ","يَلْعَبُ","نَلْعَبُ","او (مونث) بازی کرد ← بازی می‌کند"),
-("نَحْنُ","جَلَسْنَا","نَجْلِسُ","أَجْلِسُ","تَجْلِسُ","يَجْلِسُ","نَجْلِسُ","ما نشستیم ← می‌نشینیم"),
-("أَنْتُمْ","فَهِمْتُمْ","تَفْهَمُونَ","أَفْهَمُ","تَفْهَمُونَ","يَفْهَمُونَ","نَفْهَمُ","شما فهمیدید ← می‌فهمید"),
-("هُمْ","رَجَعُوا","يَرْجِعُونَ","أَرْجِعُ","تَرْجِعُونَ","يَرْجِعُونَ","نَرْجِعُ","آن‌ها برگشتند ← برمی‌گردند"),
-("هُنَّ","كَتَبْنَ","يَكْتُبْنَ","أَكْتُبُ","تَكْتُبِينَ","يَكْتُبْنَ","نَكْتُبُ","آن‌ها (مونث) نوشتند ← می‌نویسند"),
-("أَنْتُمَا","ذَهَبْتُمَا","تَذْهَبَانِ","أَذْهَبُ","تَذْهَبَانِ","يَذْهَبَانِ","نَذْهَبُ","شما دو نفر رفتید ← می‌روید"),
-("هُمَا (مذکر)","لَعِبَا","يَلْعَبَانِ","أَلْعَبُ","تَلْعَبَانِ","يَلْعَبَانِ","نَلْعَبُ","آن دو (مذکر) بازی کردند ← بازی می‌کنند"),
-("هُمَا (مونث)","جَلَسَتَا","تَجْلِسَانِ","أَجْلِسُ","تَجْلِسَانِ","يَجْلِسَانِ","نَجْلِسُ","آن دو (مونث) نشستند ← می‌نشینند"),
-("أَنَا","شَرِبْتُ","أَشْرَبُ","أَشْرَبُ","تَشْرَبُ","يَشْرَبُ","نَشْرَبُ","من نوشیدم ← می‌نوشم"),
-("أَنْتَ","فَتَحْتَ","تَفْتَحُ","أَفْتَحُ","تَفْتَحُ","يَفْتَحُ","نَفْتَحُ","تو (مذکر) باز کردی ← باز می‌کنی"),
-("هُوَ","سَمِعَ","يَسْمَعُ","أَسْمَعُ","تَسْمَعُ","يَسْمَعُ","نَسْمَعُ","او (مذکر) شنید ← می‌شنود"),
-("هِيَ","زَرَعَتْ","تَزْرَعُ","أَزْرَعُ","تَزْرَعُ","يَزْرَعُ","نَزْرَعُ","او (مونث) کاشت ← می‌کارد"),
-("نَحْنُ","تَعَلَّمْنَا","نَتَعَلَّمُ","أَتَعَلَّمُ","تَتَعَلَّمُ","يَتَعَلَّمُ","نَتَعَلَّمُ","ما یاد گرفتیم ← یاد می‌گیریم"),
-("أَنْتِ","سَمِعْتِ","تَسْمَعِينَ","أَسْمَعُ","تَسْمَعِينَ","يَسْمَعُ","نَسْمَعُ","تو (مونث) شنیدی ← می‌شنوی"),
-("هُمْ","خَرَجُوا","يَخْرُجُونَ","أَخْرُجُ","تَخْرُجُونَ","يَخْرُجُونَ","نَخْرُجُ","آن‌ها خارج شدند ← خارج می‌شوند"),
-("أَنْتُنَّ","كَتَبْتُنَّ","تَكْتُبْنَ","أَكْتُبُ","تَكْتُبِينَ","تَكْتُبْنَ","نَكْتُبُ","شما (مونث) نوشتید ← می‌نویسید"),
-]
-# Correct distractor arrays: option order is أنا، أنت/أنتِ، هو/هي/هم, نحن, with exact correct index.
-import json
-data=[]
-for pron,past,pres,a,b,c,d,meaning in items:
-    # Put correct answer in a fixed varied position while retaining plausible forms.
-    opts=[a,b,c,d]
-    ci=opts.index(pres)
-    data.append(dict(pron=pron,past=past,present=pres,opts=opts,correct=ci,meaning=meaning))
-jsdata=json.dumps(data, ensure_ascii=False)
-
-html=f'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ماجراجویی در سرزمین فعل‌ها</title>
+
 <style>
-*{{box-sizing:border-box}}body{{margin:0;min-height:100vh;font-family:Tahoma,Arial,sans-serif;color:white;background:#090d27 url("Moonlit%20Princess%20Over%20the%20Enchanted%20Gorge.png") center/cover fixed no-repeat}}
-body:before{{content:"";position:fixed;inset:0;background:linear-gradient(135deg,#05081e66,#160d3799);z-index:-1}}
-header,#scene,#game{{max-width:920px;margin:18px auto;padding:20px;background:rgba(13,17,52,.88);border:1px solid #ffffff44;border-radius:22px;box-shadow:0 12px 35px #0007}}
-header{{text-align:center}}h1{{color:#ffdc86;margin:8px;font-size:clamp(24px,5vw,36px)}}.stats{{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}}.info{{padding:9px 16px;border-radius:12px;background:#ffffff18}}
-#scene{{text-align:center}}#princess{{font-size:38px}}#bridge{{height:8px;max-width:500px;margin:12px auto;background:linear-gradient(90deg,#9c6b39,#f5cf7c,#9c6b39);border-radius:20px}}#bridgeMessage{{color:#ffe6a8}}
-.top{{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#dedaff}}#progress{{height:10px;background:#ffffff25;border-radius:20px;margin:14px 0;overflow:hidden}}#bar{{height:100%;width:0;background:linear-gradient(90deg,#8b77ff,#ffda7d);transition:.3s}}
-.instruction{{text-align:center;color:#dedaff;margin:15px 0}}.verbbox{{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}}.verb{{text-align:center;padding:18px 10px;border-radius:15px;background:#ffffff16;border:1px solid #ffffff35}}.verb small{{display:block;color:#e0d9ff;margin-bottom:9px}}.verb strong{{font-size:clamp(23px,5vw,32px);color:#ffdc86}}#question{{text-align:center;font-size:19px;margin:18px 0}}#meaning{{text-align:center;color:#ddd8ff;margin-bottom:16px}}
-#answers{{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}}.answer{{font: bold 20px Tahoma;padding:15px;border-radius:13px;border:1px solid #ffffff44;background:#ffffff17;color:white;cursor:pointer}}.answer:disabled{{cursor:default;opacity:.95}}.correct{{background:#176b50!important;border-color:#70e7b8!important}}.wrong{{background:#81384b!important;border-color:#ff9eae!important}}
-#feedback{{min-height:32px;text-align:center;font-weight:bold;margin:16px 0}}.controls{{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}}button.action{{font: bold 15px Tahoma;padding:12px 18px;border:0;border-radius:12px;background:linear-gradient(135deg,#ffdc86,#e9a94e);color:#342044;cursor:pointer}}button:disabled{{opacity:.5}}#music{{background:#7770b8;color:white}}#restart{{background:#77c8bd}}footer{{text-align:center;padding:0 12px 24px;color:#eee5ff;font-size:13px}}
-@media(max-width:560px){{header,#scene,#game{{margin:12px;padding:16px}}#answers{{grid-template-columns:1fr}}.answer{{font-size:19px}}}}
-</style></head>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Tahoma,Arial,sans-serif;
+  color:white;
+  background:#090d27 url("castle-bg.png") center/cover fixed no-repeat;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:linear-gradient(180deg,rgba(3,5,25,.25),rgba(3,5,25,.55) 48%,rgba(3,5,25,.9));
+  z-index:-1;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  padding:18px;
+}
+h1{
+  font-size:clamp(20px,4vw,32px);
+  color:#ffe3a1;
+  text-shadow:0 0 18px #b57bff;
+  text-align:center;
+}
+.info{
+  background:rgba(10,12,44,.85);
+  border:1px solid #d9a64d;
+  border-radius:16px;
+  padding:12px 18px;
+  box-shadow:0 0 15px #8b54bb;
+}
+#scene{
+  position:relative;
+  height:44vh;
+  min-height:260px;
+}
+#marker{
+  position:absolute;
+  left:35%;
+  top:56%;
+  font-size:35px;
+  filter:drop-shadow(0 0 12px gold);
+  transition:all 1s ease;
+}
+#bridgeMessage{
+  position:absolute;
+  bottom:12px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#100e35dd;
+  border:1px solid #d8ad61;
+  border-radius:20px;
+  padding:10px 18px;
+  white-space:nowrap;
+}
+#game{
+  width:min(900px,94%);
+  margin:0 auto 25px;
+  padding:22px;
+  border:2px solid #d6a64c;
+  border-radius:24px;
+  background:linear-gradient(145deg,#111333f5,#211044f5);
+  box-shadow:0 0 35px #9b5bce77;
+  text-align:center;
+}
+.small{
+  color:#e9c986;
+  margin:8px;
+}
+#question{
+  font-size:clamp(19px,3vw,27px);
+  line-height:2;
+  margin:15px 0 22px;
+}
+.answers{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.answer{
+  background:linear-gradient(130deg,#25205e,#17133d);
+  color:white;
+  border:1px solid #d7a34c;
+  border-radius:15px;
+  padding:16px 8px;
+  font-family:inherit;
+  font-size:23px;
+  cursor:pointer;
+  transition:.2s;
+}
+.answer:hover{
+  transform:scale(1.03);
+  box-shadow:0 0 18px #d8a64d;
+}
+.answer:disabled{cursor:default;opacity:.85}
+.correct{background:#176b4b!important;border-color:#7fffc0}
+.wrong{background:#762c43!important;border-color:#ff9aaf}
+#feedback{
+  min-height:34px;
+  margin:16px;
+  font-size:18px;
+  color:#ffe5a5;
+}
+button.control{
+  background:#34205d;
+  border:1px solid #e4bd70;
+  color:white;
+  border-radius:12px;
+  padding:10px 18px;
+  font-family:inherit;
+  cursor:pointer;
+  margin:5px;
+}
+#next{display:none;background:#7250a5}
+#endScreen{display:none;line-height:2}
+@media(max-width:500px){
+  .answers{grid-template-columns:1fr}
+  #scene{height:35vh}
+  header{justify-content:center}
+}
+</style>
+</head>
+
 <body>
-<header><div>🏰 ✨ 🌙</div><h1>ماجراجویی در سرزمین فعل‌ها</h1><p>فعل ماضی را ببین و مضارع درستِ همان ضمیر را پیدا کن!</p><div class="stats"><div class="info">⭐ امتیاز: <b id="score">۰</b></div><div class="info">📜 سؤال: <b id="counter">۱ از ۲۰</b></div></div></header>
-<section id="scene"><div id="princess">👸</div><div id="bridge"></div><div id="bridgeMessage">با پاسخ‌های درست، شاهزاده را به قصر برسان!</div></section>
-<main id="game"><div class="top"><span>ماضی ← مضارع</span><span id="stage">مرحله ۱</span></div><div id="progress"><div id="bar"></div></div>
-<p class="instruction">ضمیر و فعل ماضی را بخوان؛ سپس مضارع مناسب را انتخاب کن.</p>
-<div class="verbbox"><div class="verb"><small>ضمیر</small><strong id="pronoun">أَنَا</strong></div><div class="verb"><small>فعل ماضی</small><strong id="past">ذَهَبْتُ</strong></div></div>
-<div id="question">مضارعِ این فعل برای این ضمیر کدام است؟</div><div id="meaning"></div><div id="answers"></div><div id="feedback" aria-live="polite"></div>
-<div class="controls"><button class="action" id="next" disabled>سؤال بعدی ←</button><button class="action" id="music">🎵 روشن کردن موسیقی</button><button class="action" id="restart" hidden>شروع دوباره</button></div></main>
-<footer>هر پاسخ درست، یک قدم به قصر نزدیک‌ترت می‌کند! 🌟</footer>
+
+<header>
+  <div class="info">⭐ امتیاز: <span id="score">۰</span></div>
+  <h1>🏰 ماجراجویی در سرزمین فعل‌ها</h1>
+  <div class="info">سؤال: <span id="number">۱</span> از ۲۰</div>
+</header>
+
+<section id="scene">
+  <div id="marker">✨</div>
+  <div id="bridgeMessage">راه رسیدن به قصر از پل جادویی می‌گذرد...</div>
+</section>
+
+<main id="game">
+  <div class="small" id="verbInfo">زمان: ماضی</div>
+  <div class="small" id="progress">تخته‌های باقی‌مانده: ۱۲</div>
+
+  <div id="question">در حال آماده‌سازی سؤال...</div>
+
+  <div class="answers" id="answers"></div>
+
+  <div id="feedback"></div>
+
+  <button class="control" id="next" onclick="nextQuestion()">
+    سؤال بعدی ←
+  </button>
+
+  <button class="control" onclick="toggleMusic()" id="musicButton">
+    ♫ روشن / خاموش کردن موسیقی
+  </button>
+
+  <div id="endScreen">
+    <h2>🏰 ماجراجویی به پایان رسید!</h2>
+    <p id="finalScore"></p>
+    <button class="control" onclick="restart()">شروع دوباره</button>
+  </div>
+</main>
+
 <script>
-const questions={jsdata};
-let index=0,score=0,answered=false,musicOn=false,ctx=null,timer=null,note=0;
-const el=id=>document.getElementById(id),fa=n=>String(n).replace(/\\\\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
-function show(){{
- answered=false;let q=questions[index];el("counter").textContent=fa(index+1)+" از "+fa(questions.length);el("stage").textContent="مرحله "+fa(index+1);el("pronoun").textContent=q.pron;el("past").textContent=q.past;el("meaning").textContent=q.meaning;el("feedback").textContent="";el("next").disabled=true;el("bar").style.width=(index/questions.length*100)+"%";el("answers").innerHTML="";
- q.opts.forEach((v,i)=>{{let b=document.createElement("button");b.className="answer";b.textContent=v;b.onclick=()=>choose(i,b);el("answers").appendChild(b)}});
-}}
-function choose(i,button){{
- if(answered)return;answered=true;let q=questions[index];document.querySelectorAll(".answer").forEach((b,j)=>{{b.disabled=true;if(j===q.correct)b.classList.add("correct")}});
- if(i===q.correct){{score+=10;el("score").textContent=fa(score);el("feedback").textContent="آفرین! مضارع را درست پیدا کردی. ✨";el("feedback").style.color="#83f2bd";el("bridgeMessage").textContent="یک قدم دیگر به قصر نزدیک شدی!";}}
- else{{button.classList.add("wrong");el("feedback").textContent="پاسخ درست: "+q.present;el("feedback").style.color="#ffb1c0";el("bridgeMessage").textContent="اشکالی ندارد؛ شکل درست را یاد گرفتی."}}
- el("next").disabled=false;el("bar").style.width=((index+1)/questions.length*100)+"%";
-}}
-function next(){{if(!answered)return;index++;if(index===questions.length){{el("pronoun").textContent="🏆";el("past").textContent="أَحْسَنْتَ";el("question").textContent="به پایان ماجراجویی رسیدی!";el("meaning").textContent="امتیاز نهایی: "+fa(score)+" از "+fa(questions.length*10);el("answers").innerHTML="";el("feedback").textContent="آفرین که ماضی و مضارع را تمرین کردی!";el("next").hidden=true;el("restart").hidden=false;el("bridgeMessage").textContent="دروازه قصر باز شد! 🏰";el("counter").textContent="پایان";return}}show()}}
-el("next").onclick=next;el("restart").onclick=()=>{{index=0;score=0;el("score").textContent="۰";el("next").hidden=false;el("restart").hidden=true;el("princess").textContent="👸";el("bridgeMessage").textContent="با پاسخ‌های درست، شاهزاده را به قصر برسان!";show()}};
-function tone(f){{if(!ctx)return;let o=ctx.createOscillator(),g=ctx.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.06,ctx.currentTime+.03);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+.25);o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+.26)}}
-el("music").onclick=async()=>{{if(!musicOn){{let AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;ctx=new AC();if(ctx.state==="suspended")await ctx.resume();let notes=[392,440,523,440,349,392,466,392];timer=setInterval(()=>tone(notes[note++%notes.length]),380);musicOn=true;el("music").textContent="🔇 خاموش کردن موسیقی"}}else{{clearInterval(timer);await ctx.suspend();musicOn=false;el("music").textContent="🎵 روشن کردن موسیقی"}}}};
-show();
-</script></body></html>'''
+const verbs = [
+  {name:"ذَهَبَ", past:"ذَهَب", present:"ذْهَب", meaning:"رفتن"},
+  {name:"كَتَبَ", past:"كَتَب", present:"كْتُب", meaning:"نوشتن"},
+  {name:"جَلَسَ", past:"جَلَس", present:"جْلِس", meaning:"نشستن"},
+  {name:"فَتَحَ", past:"فَتَح", present:"فْتَح", meaning:"باز کردن"},
+  {name:"نَصَرَ", past:"نَصَر", present:"نْصُر", meaning:"یاری کردن"},
+  {name:"شَرِبَ", past:"شَرِب", present:"شْرَب", meaning:"نوشیدن"},
+  {name:"سَمِعَ", past:"سَمِع", present:"سْمَع", meaning:"شنیدن"},
+  {name:"دَخَلَ", past:"دَخَل", present:"دْخُل", meaning:"وارد شدن"}
+];
+
+const pronouns = [
+  {name:"هُوَ", past:"", presentPrefix:"يَ", presentEnd:"ُ"},
+  {name:"هِيَ", past:"تْ", presentPrefix:"تَ", presentEnd:"ُ"},
+  {name:"هُمَا (مذکر)", past:"ا", presentPrefix:"يَ", presentEnd:"انِ"},
+  {name:"هُمَا (مؤنث)", past:"تَا", presentPrefix:"تَ", presentEnd:"انِ"},
+  {name:"هُمْ", past:"وا", presentPrefix:"يَ", presentEnd:"ونَ"},
+  {name:"هُنَّ", past:"ْنَ", presentPrefix:"يَ", presentEnd:"ْنَ"},
+  {name:"أَنْتَ", past:"تَ", presentPrefix:"تَ", presentEnd:"ُ"},
+  {name:"أَنْتِ", past:"تِ", presentPrefix:"تَ", presentEnd:"ينَ"},
+  {name:"أَنْتُمَا", past:"تُمَا", presentPrefix:"تَ", presentEnd:"انِ"},
+  {name:"أَنْتُمْ", past:"تُمْ", presentPrefix:"تَ", presentEnd:"ونَ"},
+  {name:"أَنْتُنَّ", past:"تُنَّ", presentPrefix:"تَ", presentEnd:"ْنَ"},
+  {name:"أَنَا", past:"تُ", presentPrefix:"أَ", presentEnd:"ُ"},
+  {name:"نَحْنُ", past:"نَا", presentPrefix:"نَ", presentEnd:"ُ"}
+];
+
+// صرف فعل برای هر ضمیر
+function conjugate(verb, pronoun, tense){
+  if(tense === "ماضی"){
+    return verb.past + pronoun.past;
+  }
+  return pronoun.presentPrefix + verb.present + pronoun.presentEnd;
+}
+
+let score = 0;
+let questionCount = 0;
+let planks = 12;
+let currentQuestion = null;
+let answered = false;
+let musicOn = false;
+let audioContext = null;
+
+const totalQuestions = 20;
+
+function randomItem(arr){
+  return arr[Math.floor(Math.random()*arr.length)];
+}
+
+function newQuestion(){
+  if(questionCount >= totalQuestions){
+    finishGame();
+    return;
+  }
+
+  answered = false;
+  questionCount++;
+
+  const verb = randomItem(verbs);
+  const pronoun = randomItem(pronouns);
+  const tense = Math.random() < .5 ? "ماضی" : "مضارع";
+
+  const correct = conjugate(verb,pronoun,tense);
+
+  const allAnswers = pronouns
+    .map(p => conjugate(verb,p,tense))
+    .filter(a => a !== correct);
+
+  const wrongAnswers = [...new Set(allAnswers)];
+  const choices = [correct];
+
+  while(choices.length < 4 && wrongAnswers.length){
+    const index = Math.floor(Math.random()*wrongAnswers.length);
+    choices.push(wrongAnswers.splice(index,1)[0]);
+  }
+
+  while(choices.length < 4){
+    choices.push(randomItem(allAnswers));
+  }
+
+  choices.sort(()=>Math.random()-.5);
+
+  currentQuestion = {verb,pronoun,tense,correct};
+
+  document.getElementById("number").textContent = questionCount;
+  document.getElementById("score").textContent = score;
+  document.getElementById("verbInfo").textContent =
+    "زمان: " + tense + " | معنی فعل: " + verb.meaning;
+
+  document.getElementById("question").innerHTML =
+    "صرف فعل <strong>«" + verb.name +
+    "»</strong> برای ضمیر <strong>«" +
+    pronoun.name + "»</strong> چیست؟";
+
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("next").style.display = "none";
+
+  const box = document.getElementById("answers");
+  box.innerHTML = "";
+
+  choices.forEach(choice=>{
+    const button = document.createElement("button");
+    button.className = "answer";
+    button.textContent = choice;
+    button.onclick = ()=>checkAnswer(button,choice);
+    box.appendChild(button);
+  });
+
+  document.getElementById("progress").textContent =
+    "تخته‌های باقی‌مانده: " + planks;
+}
+
+function checkAnswer(button,choice){
+  if(answered) return;
+  answered = true;
+
+  const buttons = document.querySelectorAll(".answer");
+  buttons.forEach(b=>b.disabled=true);
+
+  const feedback = document.getElementById("feedback");
+
+  if(choice === currentQuestion.correct){
+    score += 10;
+    button.classList.add("correct");
+    feedback.textContent = "✨ آفرین! درست جواب دادی. شاهزاده به قصر نزدیک‌تر شد!";
+    moveMarker();
+  }else{
+    button.classList.add("wrong");
+    feedback.textContent =
+      "این بار درست نبود! جواب درست: " + currentQuestion.correct;
+    planks = Math.max(0,planks-1);
+    document.getElementById("bridgeMessage").textContent =
+      "⚠️ یک تخته از پل فرو ریخت!";
+    document.getElementById("progress").textContent =
+      "تخته‌های باقی‌مانده: " + planks;
+    shakeScene();
+  }
+
+  document.getElementById("score").textContent = score;
+  document.getElementById("next").style.display = "inline-block";
+
+  if(questionCount >= totalQuestions){
+    document.getElementById("next").textContent = "دیدن نتیجه";
+  }
+}
+
+function moveMarker(){
+  const marker = document.getElementById("marker");
+  const percent = Math.min(35 + score/200*45,80);
+  marker.style.left = percent + "%";
+  marker.style.top = Math.max(25,56-score/10) + "%";
+  document.getElementById("bridgeMessage").textContent =
+    "✨ شاهزاده یک قدم به قصر نزدیک‌تر شد!";
+}
+
+function shakeScene(){
+  const scene = document.getElementById("scene");
+  scene.animate([
+    {transform:"translateX(0)"},
+    {transform:"translateX(-8px)"},
+    {transform:"translateX(8px)"},
+    {transform:"translateX(0)"}
+  ],{duration:350});
+}
+
+function nextQuestion(){
+  newQuestion();
+}
+
+function finishGame(){
+  document.getElementById("game").querySelector(".answers").style.display="none";
+  document.getElementById("question").style.display="none";
+  document.getElementById("verbInfo").style.display="none";
+  document.getElementById("feedback").style.display="none";
+  document.getElementById("next").style.display="none";
+  document.getElementById("endScreen").style.display="block";
+
+  document.getElementById("finalScore").textContent =
+    "امتیاز تو: " + score + " از " + (totalQuestions*10);
+
+  document.getElementById("bridgeMessage").textContent =
+    "🏰 ماجراجویی تو به پایان رسید!";
+}
+
+function restart(){
+  score=0;
+  questionCount=0;
+  planks=12;
+
+  document.getElementById("game").querySelector(".answers").style.display="grid";
+  document.getElementById("question").style.display="block";
+  document.getElementById("verbInfo").style.display="block";
+  document.getElementById("feedback").style.display="block";
+  document.getElementById("endScreen").style.display="none";
+
+  document.getElementById("marker").style.left="35%";
+  document.getElementById("marker").style.top="56%";
+  document.getElementById("bridgeMessage").textContent=
+    "راه رسیدن به قصر از پل جادویی می‌گذرد...";
+
+  newQuestion();
+}
+
+// موسیقی ساده و جادویی با صدای ساخته‌شده در مرورگر
+function toggleMusic(){
+  if(!audioContext){
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+
+  musicOn = !musicOn;
+  document.getElementById("musicButton").textContent =
+    musicOn ? "♫ خاموش کردن موسیقی" : "♫ روشن کردن موسیقی";
+
+  if(musicOn){
+    playMagicNotes();
+  }
+}
+
+function playMagicNotes(){
+  if(!musicOn) return;
+
+  const notes=[261.63,329.63,392,523.25,392,329.63];
+  let i=0;
+
+  function playNext(){
+    if(!musicOn) return;
+
+    const osc=audioContext.createOscillator();
+    const gain=audioContext.createGain();
+
+    osc.type="sine";
+    osc.frequency.value=notes[i%notes.length];
+
+    gain.gain.setValueAtTime(.0001,audioContext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.06,audioContext.currentTime+.1);
+    gain.gain.exponentialRampToValueAtTime(.0001,audioContext.currentTime+.8);
+
+    osc.connect(gain);
+    gain.connect(audioContext.destination);
+
+    osc.start();
+    osc.stop(audioContext.currentTime+.85);
+
+    i++;
+    setTimeout(playNext,650);
+  }
+
+  playNext();
+}
+
+newQuestion();
+</script>
+</body>
+</html>
